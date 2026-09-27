@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Used by scripts/Makefile and scripts/rebar-pre-script to create
+# the yaws.conf file
+
+set -e
+
+if [ ! -n "$PORT" ]; then
+    echo 'error: PORT environment variable must be set' >&2
+    exit 1
+fi
+if [ ! -n "$SSLPORT" ]; then
+    echo 'error: SSLPORT environment variable must be set' >&2
+    exit 1
+fi
+
+cat yaws.conf.template                  | \
+    ./Subst %yawsdir% "$YAWSDIR"        | \
+    ./Subst %logdir%  "$LOGDIR"         | \
+    ./Subst %vardir%  "$VARDIR"         | \
+    ./Subst %port%    $PORT             | \
+    ./Subst %docroot% "$DOCROOT"        | \
+    ./Subst %tmpdir%  "${TMPDIR:-/tmp}" | \
+    ./Subst %certdir% "$CERTDIR"        | \
+    ./Subst %sslport% $SSLPORT
+
+exit 0

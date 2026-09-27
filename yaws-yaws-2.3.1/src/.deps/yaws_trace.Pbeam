@@ -1,0 +1,2 @@
+../ebin/yaws_trace.beam: yaws_trace.erl ../include/yaws.hrl \
+  ../include/yaws_api.hrl yaws_debug.hrl

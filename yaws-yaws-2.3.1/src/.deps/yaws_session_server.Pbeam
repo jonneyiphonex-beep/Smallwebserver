@@ -1,0 +1,2 @@
+../ebin/yaws_session_server.beam: yaws_session_server.erl \
+  ../include/yaws_api.hrl ../include/yaws.hrl

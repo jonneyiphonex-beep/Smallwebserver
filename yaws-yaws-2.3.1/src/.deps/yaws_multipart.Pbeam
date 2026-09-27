@@ -1,0 +1,2 @@
+../ebin/yaws_multipart.beam: yaws_multipart.erl ../include/yaws.hrl \
+  ../include/yaws_api.hrl

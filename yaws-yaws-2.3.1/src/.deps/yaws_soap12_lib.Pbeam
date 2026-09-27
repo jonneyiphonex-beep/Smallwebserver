@@ -1,0 +1,2 @@
+../ebin/yaws_soap12_lib.beam: yaws_soap12_lib.erl ../include/yaws_soap.hrl \
+  ../include/soap-envelope.hrl ../include/wsdl11soap12.hrl

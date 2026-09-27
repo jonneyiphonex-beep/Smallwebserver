@@ -1,0 +1,1 @@
+../ebin/yaws_sup.beam: yaws_sup.erl ../include/yaws.hrl

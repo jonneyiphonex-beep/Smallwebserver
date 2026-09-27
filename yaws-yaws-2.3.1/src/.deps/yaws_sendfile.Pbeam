@@ -1,0 +1,2 @@
+../ebin/yaws_sendfile.beam: yaws_sendfile.erl ../include/yaws.hrl \
+  /usr/lib/erlang/lib/kernel-8.5.4.2/include/file.hrl

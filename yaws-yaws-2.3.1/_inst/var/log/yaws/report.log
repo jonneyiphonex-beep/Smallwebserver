@@ -1,0 +1,14 @@
+2026-09-26T23:56:32.540503+00:00 notice: Yaws: Listening to 0.0.0.0:8000 for <2> virtual servers:, - http://*:8000 under /workspaces/Smallwebserver/yaws-yaws-2.3.1/_inst/var/yaws/www, - http://localhost:8000 under /tmp
+2026-09-26T23:56:32.564981+00:00 notice: Yaws: Listening to 0.0.0.0:4443 for <1> virtual servers:, - https://*:4443 under /tmp
+2026-09-27T00:23:20.796474+00:00 notice: Yaws: Using config file /workspaces/Smallwebserver/yaws-yaws-2.3.1/_inst/etc/yaws/yaws.conf
+2026-09-27T00:23:20.852524+00:00 notice: stop_ready([], <0.290.0>)
+2026-09-27T00:23:20.852718+00:00 notice: Updating sconf for server http://*:8000
+2026-09-27T00:23:20.853186+00:00 notice: stop_ready([], <0.300.0>)
+2026-09-27T00:23:20.853329+00:00 notice: Updating sconf for server http://localhost:8000
+2026-09-27T00:23:20.853456+00:00 notice: stop_ready([], <0.281.0>)
+2026-09-27T00:23:20.853659+00:00 notice: Updating sconf for server https://*:4443
+2026-09-27T00:23:55.918983+00:00 notice: Stopping yaws
+2026-09-27T00:23:55.919595+00:00 notice: stop_ready([], <0.311.0>)
+2026-09-27T00:23:56.919995+00:00 notice: stop_ready([], <0.303.0>)
+2026-09-27T00:23:58.834080+00:00 notice: Yaws: Listening to 0.0.0.0:8000 for <2> virtual servers:, - http://*:8000 under /workspaces/Smallwebserver/yaws-yaws-2.3.1/_inst/var/yaws/www, - http://localhost:8000 under /tmp
+2026-09-27T00:23:58.866509+00:00 notice: Yaws: Listening to 0.0.0.0:4443 for <1> virtual servers:, - https://*:4443 under /tmp

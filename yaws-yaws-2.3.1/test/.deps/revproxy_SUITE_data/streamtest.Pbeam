@@ -1,0 +1,4 @@
+../test/revproxy_SUITE_data/streamtest.beam: \
+  revproxy_SUITE_data/streamtest.erl \
+  revproxy_SUITE_data/../../include/yaws.hrl \
+  revproxy_SUITE_data/../../include/yaws_api.hrl

@@ -1,0 +1,122 @@
+%% -*- mode: erlang;erlang-indent-level: 4;indent-tabs-mode: nil -*-
+%% ex: ft=erlang ts=4 sw=4 et
+
+UpdateDeps = fun(Config, NewDeps) ->
+                     case lists:keyfind(deps, 1, Config) of
+                         {deps, Deps} ->
+                             NDeps = Deps ++ NewDeps,
+                             lists:keyreplace(deps, 1, Config, {deps, NDeps});
+                         false ->
+                             Config ++ [{deps, NewDeps}]
+                     end
+             end,
+
+Dir = filename:dirname(SCRIPT),
+
+ErtsVsn = case string:tokens(erlang:system_info(version), ".") of
+              [A,B] ->
+                  {list_to_integer(A), list_to_integer(B), 0};
+              [A,B,C|_] ->
+                  {list_to_integer(A), list_to_integer(B), list_to_integer(C)}
+          end.
+
+%% generate a charset include file
+YawsCharsetFile = filename:join(Dir, "src/yaws_charset.hrl"),
+YawsCharsetContent = case os:getenv("YAWS_CHARSET") of
+                         false ->
+                             <<"-define(YAWS_CHARSET, undefined).\n">>;
+                         Charset ->
+                            erlang:iolist_to_binary([<<"-define(YAWS_CHARSET, \"">>,
+                               Charset, <<"\").\n">>])
+                     end,
+ok = case file:read_file(YawsCharsetFile) of
+    {ok, YawsCharsetContent} -> ok;
+    {ok, _} -> file:write_file(YawsCharsetFile, YawsCharsetContent);
+    {error, _} -> file:write_file(YawsCharsetFile, YawsCharsetContent)
+end,
+
+SoapDeps = [{erlsom, ".*", {git, "git://github.com/willemdj/erlsom.git", {tag, "1.4.0"}}},
+            {xmlrpc, ".*", {git, "git://github.com/rwbr/exmlrpc.git",
+                            {branch, "8813d049c9c426d86c57ac9f7325253255df9666"}}}],
+Cfg0 = case os:getenv("YAWS_SOAP") of
+           false ->
+               CONFIG;
+           _ ->
+               UpdateDeps(CONFIG, SoapDeps)
+       end,
+
+ErlOpts0 = case lists:keyfind(erl_opts, 1, Cfg0) of
+               {erl_opts, EOpts} -> EOpts;
+               false             -> []
+           end,
+ErlOpts = case os:getenv("YAWS_DETERMINISTIC_BUILD") of
+              false ->
+                  ErlOpts0;
+              _ ->
+                  [deterministic,{d,'DETERMINISTIC'}|ErlOpts0]
+          end,
+PortEnv0 = case lists:keyfind(port_env, 1, Cfg0) of
+               {port_env, PEnv} -> PEnv;
+               false            -> []
+           end,
+DisablePam = os:getenv("YAWS_DISABLE_PAM"),
+PortSpecs = case lists:keyfind(port_specs, 1, Cfg0) of
+                {port_specs, PSpecs} ->
+                    case DisablePam of
+                        false ->
+                            PSpecs;
+                        _ ->
+                            lists:keydelete("priv/lib/epam.so", 1, PSpecs)
+                    end;
+                false -> []
+            end,
+
+OS = os:type(),
+
+DefaultUsrIncludeSecurity = "/usr/include/security",
+UsrIncludeSecurity =
+    case DisablePam of
+        false ->
+            case OS of
+                {unix, darwin} ->
+                    case filelib:is_dir(DefaultUsrIncludeSecurity) of
+                        true ->
+                            DefaultUsrIncludeSecurity;
+                        false ->
+                            Result =
+                                fun R(Port, Acc) ->
+                                        receive
+                                            {Port, {data, L}} ->
+                                                R(Port, [L|Acc]);
+                                            {Port, {exit_status, 0}} ->
+                                                {ok, lists:flatten(lists:reverse(Acc))};
+                                            {Port, {exit_status, Fail}} ->
+                                                {error, {Fail,
+                                                         lists:flatten(lists:reverse(Acc))}}
+                                        end
+                                end,
+                            Run =
+                                fun(Cmd) ->
+                                        Port = open_port({spawn, Cmd},
+                                                         [exit_status, stderr_to_stdout]),
+                                        Result(Port, [])
+                                end,
+                            {ok, PlatDir} = Run("/usr/bin/xcrun --show-sdk-path"),
+                            SdkDir = string:strip(PlatDir, right, $\n),
+                            SdkDir ++ DefaultUsrIncludeSecurity
+                    end;
+                _ ->
+                    DefaultUsrIncludeSecurity
+            end;
+        _ -> ""
+    end,
+PortEnv1 = case UsrIncludeSecurity of
+               "" -> PortEnv0;
+               _ -> PortEnv0 ++ [{"CFLAGS", "$CFLAGS -I" ++ UsrIncludeSecurity}]
+           end,
+
+Cfg1 = lists:keyreplace(erl_opts,   1, Cfg0, {erl_opts,   ErlOpts}),
+Cfg2 = lists:keyreplace(port_env,   1, Cfg1, {port_env,   PortEnv1}),
+Cfg3 = lists:keyreplace(port_specs, 1, Cfg2, {port_specs, PortSpecs}),
+
+Cfg3.

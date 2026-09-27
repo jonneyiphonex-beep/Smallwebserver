@@ -1,0 +1,2 @@
+../ebin/yaws_dime.beam: yaws_dime.erl \
+  /usr/lib/erlang/lib/kernel-8.5.4.2/include/file.hrl

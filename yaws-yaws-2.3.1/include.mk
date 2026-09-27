@@ -1,0 +1,24 @@
+AM_V_ERLC = $(am__v_ERLC_$(V))
+am__v_ERLC_ = $(am__v_ERLC_$(AM_DEFAULT_VERBOSITY))
+am__v_ERLC_0 = @echo "  ERLC    " $@;
+am__v_ERLC_1 =
+
+WARNINGS_AS_ERRORS = -Werror
+
+DEBUGINFO_OR_DETERMINISTIC = +debug_info
+DETERMINISTIC_MACRO = 
+PHONY_DEPS = 
+SOURCE_DATE_EPOCH ?= 
+
+ERLC_GENERIC_BASE_FLAGS = $(WARNINGS_AS_ERRORS) $(DEBUG_ERLC_FLAGS)			\
+			  $(DETERMINISTIC_MACRO)					\
+			  -pa $(top_srcdir) -pa $(top_builddir)				\
+			  -pa $(top_builddir)/ebin					\
+			  -I $(top_srcdir)/include -I $(srcdir)/../include 		\
+			  -I $(top_builddir)/include -I $(builddir)/../include
+ERLC_GENERIC_FLAGS = $(ERLC_GENERIC_BASE_FLAGS) $(DEBUGINFO_OR_DETERMINISTIC)
+ERLC_GENERIC_TEST_FLAGS = $(ERLC_GENERIC_BASE_FLAGS)
+
+# Local Variables:
+#    tab-width: 8
+# End:

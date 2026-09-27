@@ -1,0 +1,3 @@
+../test/main_SUITE_data/extra_resp_hdrs.beam: \
+  main_SUITE_data/extra_resp_hdrs.erl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws_api.hrl

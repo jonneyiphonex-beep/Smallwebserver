@@ -1,0 +1,2 @@
+../test/revproxy_SUITE_data/intercept2.beam: \
+  revproxy_SUITE_data/intercept2.erl

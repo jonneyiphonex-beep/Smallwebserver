@@ -1,0 +1,2 @@
+../ebin/yaws_shaper.beam: yaws_shaper.erl ../include/yaws.hrl \
+  ../include/yaws_api.hrl yaws_debug.hrl

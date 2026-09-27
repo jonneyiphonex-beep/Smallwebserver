@@ -1,0 +1,1 @@
+../ebin/yaws_xmlrpc.beam: yaws_xmlrpc.erl ../include/yaws_api.hrl

@@ -1,0 +1,2 @@
+../test/maxconn_SUITE_data/max_connections.beam: \
+  maxconn_SUITE_data/max_connections.erl

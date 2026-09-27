@@ -1,0 +1,3 @@
+../test/main_SUITE_data/forwarded_for_test.beam: \
+  main_SUITE_data/forwarded_for_test.erl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws_api.hrl

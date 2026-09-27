@@ -1,0 +1,1 @@
+../ebin/yaws_appmod_cgi.beam: yaws_appmod_cgi.erl ../include/yaws_api.hrl

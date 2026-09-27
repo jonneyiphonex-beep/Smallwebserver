@@ -1,0 +1,1 @@
+../ebin/yaws_stats.beam: yaws_stats.erl ../include/yaws.hrl

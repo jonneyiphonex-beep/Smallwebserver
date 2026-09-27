@@ -1,0 +1,2 @@
+../../examples/ebin/shopcart.beam: shopcart.erl ../../include/yaws_api.hrl \
+  /usr/lib/erlang/lib/kernel-8.5.4.2/include/inet.hrl

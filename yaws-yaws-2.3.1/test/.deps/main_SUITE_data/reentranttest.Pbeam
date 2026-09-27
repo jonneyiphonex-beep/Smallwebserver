@@ -1,0 +1,4 @@
+../test/main_SUITE_data/reentranttest.beam: \
+  main_SUITE_data/reentranttest.erl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws.hrl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws_api.hrl

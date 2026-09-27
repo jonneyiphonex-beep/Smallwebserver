@@ -1,0 +1,2 @@
+../ebin/mime_type_c.beam: mime_type_c.erl ../include/yaws.hrl \
+  yaws_charset.hrl

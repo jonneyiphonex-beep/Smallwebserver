@@ -1,0 +1,1 @@
+../../examples/ebin/myappmod.beam: myappmod.erl ../../include/yaws_api.hrl

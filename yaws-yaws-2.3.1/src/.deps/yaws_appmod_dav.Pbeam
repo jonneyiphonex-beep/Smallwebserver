@@ -1,0 +1,4 @@
+../ebin/yaws_appmod_dav.beam: yaws_appmod_dav.erl ../include/yaws_dav.hrl \
+  ../include/yaws_lock.hrl ../include/yaws_api.hrl ../include/yaws.hrl \
+  yaws_debug.hrl /usr/lib/erlang/lib/xmerl-1.3.31.1/include/xmerl.hrl \
+  /usr/lib/erlang/lib/kernel-8.5.4.2/include/file.hrl

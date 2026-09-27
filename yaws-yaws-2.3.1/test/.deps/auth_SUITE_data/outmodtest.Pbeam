@@ -1,0 +1,3 @@
+../test/auth_SUITE_data/outmodtest.beam: auth_SUITE_data/outmodtest.erl \
+  auth_SUITE_data/../../include/yaws.hrl \
+  auth_SUITE_data/../../include/yaws_api.hrl

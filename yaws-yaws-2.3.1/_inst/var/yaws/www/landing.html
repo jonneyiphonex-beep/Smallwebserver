@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yaws Demo</title>
+    <link rel="stylesheet" href="/landing.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Yaws</div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Small web server project</p>
+          <h1>Modern front-end for a lightweight Erlang web server.</h1>
+          <p class="lead">
+            This page demonstrates how easy it is to pair a static HTML/CSS/JavaScript UI with the Yaws server.
+          </p>
+          <div class="actions">
+            <button id="primaryAction" class="primary">Explore</button>
+            <button class="secondary" type="button">Learn more</button>
+          </div>
+        </div>
+
+        <div class="hero-card" id="demo">
+          <h2>Live status</h2>
+          <div class="status-row">
+            <span>Status</span>
+            <span id="statusBadge" class="badge online">Online</span>
+          </div>
+          <div class="status-row">
+            <span>Server</span>
+            <span>Yaws 2.3.1</span>
+          </div>
+          <div class="status-row">
+            <span>Port</span>
+            <span>8000</span>
+          </div>
+          <button id="toggleTheme" class="ghost" type="button">Toggle theme</button>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <article>
+          <h3>HTML</h3>
+          <p>Semantic structure for content and layout.</p>
+        </article>
+        <article>
+          <h3>CSS</h3>
+          <p>Responsive styling with a clean dashboard look.</p>
+        </article>
+        <article>
+          <h3>JavaScript</h3>
+          <p>Interactive UI updates without leaving the browser.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <p>Built for Yaws • Demo page • <a href="mailto:hello@example.com">hello@example.com</a></p>
+    </footer>
+
+    <script src="/landing.js"></script>
+  </body>
+</html>

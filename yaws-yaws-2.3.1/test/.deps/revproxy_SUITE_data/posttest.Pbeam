@@ -1,0 +1,3 @@
+../test/revproxy_SUITE_data/posttest.beam: revproxy_SUITE_data/posttest.erl \
+  revproxy_SUITE_data/../../include/yaws.hrl \
+  revproxy_SUITE_data/../../include/yaws_api.hrl

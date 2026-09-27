@@ -1,0 +1,2 @@
+../ebin/yaws_cgi.beam: yaws_cgi.erl ../include/yaws_api.hrl yaws_debug.hrl \
+  ../include/yaws.hrl

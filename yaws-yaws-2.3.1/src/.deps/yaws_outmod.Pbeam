@@ -1,0 +1,2 @@
+../ebin/yaws_outmod.beam: yaws_outmod.erl ../include/yaws.hrl \
+  ../include/yaws_api.hrl

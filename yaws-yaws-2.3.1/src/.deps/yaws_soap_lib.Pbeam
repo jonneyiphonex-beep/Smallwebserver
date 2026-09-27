@@ -1,0 +1,1 @@
+../ebin/yaws_soap_lib.beam: yaws_soap_lib.erl ../include/soap.hrl

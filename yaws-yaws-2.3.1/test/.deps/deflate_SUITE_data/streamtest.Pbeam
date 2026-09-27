@@ -1,0 +1,4 @@
+../test/deflate_SUITE_data/streamtest.beam: \
+  deflate_SUITE_data/streamtest.erl \
+  deflate_SUITE_data/../../include/yaws.hrl \
+  deflate_SUITE_data/../../include/yaws_api.hrl

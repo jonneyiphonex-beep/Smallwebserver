@@ -1,0 +1,2 @@
+../test/auth_SUITE_data/rewritetest.beam: auth_SUITE_data/rewritetest.erl \
+  auth_SUITE_data/../../include/yaws_api.hrl

@@ -1,0 +1,2 @@
+../test/main_SUITE_data/appmod_with_yssi_strip_undefined_bindings.beam: \
+  main_SUITE_data/appmod_with_yssi_strip_undefined_bindings.erl

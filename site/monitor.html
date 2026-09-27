@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="مراقبة مباشرة لاستخدام المعالج والذاكرة ونشاط الأقراص." />
+    <title>مراقبة النظام | Smallwebserver</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+    <script src="/assets/monitor.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/index.html">Smallwebserver</a>
+      <nav aria-label="التنقل الرئيسي">
+        <a href="/index.html">الرئيسية</a>
+        <a aria-current="page" href="/monitor.html">مراقبة النظام</a>
+        <a href="/about.html">عن المشروع</a>
+        <a href="/contact.html">التواصل</a>
+      </nav>
+    </header>
+
+    <main class="monitor-page">
+      <div class="monitor-heading">
+        <div>
+          <p class="eyebrow">مؤشرات مباشرة</p>
+          <h1>مراقبة النظام</h1>
+          <p class="intro">تُحدّث القراءات تلقائيًا كل ثانية من نظام التشغيل الذي يعمل عليه خادم Yaws.</p>
+        </div>
+        <p id="metricStatus" class="monitor-status" role="status" aria-live="polite">جارٍ الاتصال...</p>
+      </div>
+
+      <section class="monitor-grid" aria-label="مؤشرات النظام">
+        <article class="metric">
+          <div class="metric-heading"><h2>استخدام المعالج</h2><span>CPU</span></div>
+          <p class="metric-value"><span id="cpuValue" dir="ltr">--</span><span class="metric-unit">%</span></p>
+          <div class="metric-track" role="progressbar" aria-label="استخدام المعالج" aria-valuemin="0" aria-valuemax="100">
+            <span id="cpuBar" class="metric-fill"></span>
+          </div>
+          <p class="metric-detail">متوسط استخدام جميع الأنوية</p>
+        </article>
+
+        <article class="metric">
+          <div class="metric-heading"><h2>استخدام الذاكرة</h2><span>RAM</span></div>
+          <p class="metric-value"><span id="memoryValue" dir="ltr">--</span><span class="metric-unit">%</span></p>
+          <div class="metric-track" role="progressbar" aria-label="استخدام الذاكرة" aria-valuemin="0" aria-valuemax="100">
+            <span id="memoryBar" class="metric-fill"></span>
+          </div>
+          <p id="memoryDetail" class="metric-detail">-- من --</p>
+        </article>
+
+        <article class="metric">
+          <div class="metric-heading"><h2>نشاط الأقراص</h2><span>DISK</span></div>
+          <div class="disk-rates">
+            <p><span>قراءة</span><strong id="diskRead" dir="ltr">-- MiB/s</strong></p>
+            <p><span>كتابة</span><strong id="diskWrite" dir="ltr">-- MiB/s</strong></p>
+          </div>
+          <p id="diskDevices" class="metric-detail">جارٍ اكتشاف الأقراص...</p>
+        </article>
+
+        <article class="metric">
+          <div class="metric-heading"><h2>زمن الاستجابة</h2><span>API</span></div>
+          <p class="metric-value metric-value-small"><span id="responseNs" dir="ltr">--</span><span class="metric-unit">ns</span></p>
+          <p class="metric-detail">زمن الطلب من المتصفح إلى endpoint المؤشرات والعودة</p>
+          <p class="metric-detail">جمع البيانات في الخادم: <strong id="sampleNs" dir="ltr">--</strong> ns</p>
+        </article>
+      </section>
+
+      <p class="monitor-note">زمن ns هو وحدة عرض؛ دقة القياس الفعلية يحددها المتصفح والنظام. هذا قياس لطلب لوحة المؤشرات، وليس زمن استجابة القرص أو دقة تحديث الأجهزة.</p>
+    </main>
+
+    <footer><span>Smallwebserver</span><span>القراءات خاصة بالخادم الذي يستضيف الموقع</span></footer>
+  </body>
+</html>

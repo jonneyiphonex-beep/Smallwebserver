@@ -1,0 +1,2 @@
+../ebin/yaws_dynopts.beam: yaws_dynopts.erl ../include/yaws.hrl \
+  ../include/yaws_api.hrl

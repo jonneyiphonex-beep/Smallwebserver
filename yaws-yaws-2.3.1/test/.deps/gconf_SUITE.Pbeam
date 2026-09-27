@@ -1,0 +1,6 @@
+../test/gconf_SUITE.beam: gconf_SUITE.erl testsuite.hrl \
+  /usr/lib/erlang/lib/common_test-1.24.0.1/include/ct.hrl \
+  /usr/lib/erlang/lib/eunit-2.8.2/include/eunit.hrl \
+  /usr/lib/erlang/lib/stdlib-4.3.1.3/include/assert.hrl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws.hrl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws_api.hrl

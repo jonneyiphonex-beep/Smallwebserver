@@ -1,0 +1,15 @@
+##
+##  yaws.pc: pkg-config(1) specification
+##
+
+prefix=/workspaces/Smallwebserver/yaws-yaws-2.3.1/_inst
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib/yaws/ebin
+includedir=${prefix}/lib/yaws/include
+
+Name: yaws
+Description: Yet Another Web Server
+Version: 2.3.1
+URL: https://erlyaws.github.io/
+Libs: -pa ${libdir}
+Cflags: -I${includedir}

@@ -1,0 +1,3 @@
+../test/main_SUITE_data/appmod_with_yssi.beam: \
+  main_SUITE_data/appmod_with_yssi.erl \
+  /workspaces/Smallwebserver/yaws-yaws-2.3.1/test/../include/yaws_api.hrl

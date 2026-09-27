@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="تعرف على مشروع Smallwebserver وبنيته." />
+    <title>عن المشروع | Smallwebserver</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/index.html">Smallwebserver</a>
+      <nav aria-label="التنقل الرئيسي">
+        <a href="/index.html">الرئيسية</a>
+        <a href="/monitor.html">مراقبة النظام</a>
+        <a aria-current="page" href="/about.html">عن المشروع</a>
+        <a href="/contact.html">التواصل</a>
+      </nav>
+    </header>
+
+    <main class="content-page">
+      <p class="eyebrow">عن المشروع</p>
+      <h1>موقع صغير، وبنية مفهومة.</h1>
+      <p class="intro">يعرض هذا المشروع صفحات HTML ثابتة عبر Yaws، وهو خادم ويب مكتوب بلغة Erlang.</p>
+      <p class="intro">تستخدم لوحة المراقبة endpoint ديناميكيًا لقراءة مؤشرات نظام Linux الذي يعمل عليه الخادم.</p>
+      <section class="details">
+        <h2>كيف نُظّم؟</h2>
+        <p>ملفات الصفحات ومظهرها موجودة في مجلد <code>site/</code>. ينقلها الأمر <code>bash sync-site.sh</code> إلى مجلد الويب الذي يقرأه Yaws.</p>
+        <p>بهذا تبقى ملفات الموقع التي تعدّلها منفصلة عن ملفات مصدر الخادم وملفات التثبيت الناتجة عن البناء.</p>
+      </section>
+      <a class="text-link" href="/index.html">← العودة إلى الرئيسية</a>
+    </main>
+
+    <footer><span>Smallwebserver</span><span>محتوى ثابت يُقدَّم من Yaws</span></footer>
+  </body>
+</html>

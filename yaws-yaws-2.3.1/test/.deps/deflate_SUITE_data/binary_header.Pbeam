@@ -1,0 +1,2 @@
+../test/deflate_SUITE_data/binary_header.beam: \
+  deflate_SUITE_data/binary_header.erl

@@ -1,0 +1,2 @@
+../ebin/yaws_jsonrpc.beam: yaws_jsonrpc.erl yaws_debug.hrl \
+  ../include/yaws_api.hrl

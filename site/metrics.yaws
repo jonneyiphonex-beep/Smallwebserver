@@ -1,0 +1,101 @@
+<erl>
+out(_) ->
+    Started = erlang:monotonic_time(nanosecond),
+    {CpuTotal, CpuIdle} = cpu_counters(),
+    {MemoryTotal, MemoryAvailable} = memory_counters(),
+    Disks = disk_counters(),
+    SampleNs = erlang:monotonic_time(nanosecond) - Started,
+    Body = json2:encode({struct, [
+        {cpu_total, CpuTotal},
+        {cpu_idle, CpuIdle},
+        {memory_total_bytes, MemoryTotal},
+        {memory_available_bytes, MemoryAvailable},
+        {sample_ns, SampleNs},
+        {disks, {array, Disks}}
+    ]}),
+    {content, "application/json; charset=utf-8", Body}.
+
+cpu_counters() ->
+    case file:read_file("/proc/stat") of
+        {ok, Data} ->
+            case string:tokens(binary_to_list(Data), "\n") of
+                [Line | _] ->
+                    case string:tokens(Line, " \t") of
+                        ["cpu", UserText, NiceText, SystemText, IdleText | OtherTexts] ->
+                            [User, Nice, System, Idle | Other] = lists:map(fun list_to_integer/1,
+                                                                           [UserText, NiceText, SystemText, IdleText | OtherTexts]),
+                            [IoWait | OtherCpu] = case Other of
+                                [] -> [0];
+                                _ -> Other
+                            end,
+                            Total = User + Nice + System + Idle + IoWait + lists:sum(lists:sublist(OtherCpu, 3)),
+                            {Total, Idle + IoWait};
+                        _ ->
+                            {0, 0}
+                    end;
+                [] ->
+                    {0, 0}
+            end;
+        _ ->
+            {0, 0}
+    end.
+
+memory_counters() ->
+    case file:read_file("/proc/meminfo") of
+        {ok, Data} ->
+            Lines = string:tokens(binary_to_list(Data), "\n"),
+            {memory_value("MemTotal", Lines), memory_value("MemAvailable", Lines)};
+        _ ->
+            {0, 0}
+    end.
+
+memory_value(_, []) ->
+    0;
+memory_value(Name, [Line | Rest]) ->
+    case string:tokens(Line, " \t:") of
+        [Name, Value | _] -> list_to_integer(Value) * 1024;
+        _ -> memory_value(Name, Rest)
+    end.
+
+disk_counters() ->
+    case file:list_dir("/sys/block") of
+        {ok, Names} ->
+            [Disk || Name <- Names,
+                     not ignored_block_device(Name),
+                     Disk <- [disk_counters(Name)],
+                     Disk =/= false];
+        _ ->
+            []
+    end.
+
+ignored_block_device(Name) ->
+    lists:prefix("loop", Name) orelse
+    lists:prefix("ram", Name) orelse
+    lists:prefix("zram", Name).
+
+disk_counters(Name) ->
+    Path = filename:join(["/sys/block", Name, "stat"]),
+    case file:read_file(Path) of
+        {ok, Data} ->
+            Values = [list_to_integer(Value) || Value <- string:tokens(binary_to_list(Data), " \t\n")],
+            case Values of
+                [Reads, _ReadMerges, SectorsRead, ReadMs,
+                 Writes, _WriteMerges, SectorsWritten, WriteMs,
+                 InProgress | _] ->
+                    {struct, [
+                        {name, Name},
+                        {reads_completed, Reads},
+                        {writes_completed, Writes},
+                        {sectors_read, SectorsRead},
+                        {sectors_written, SectorsWritten},
+                        {read_ms, ReadMs},
+                        {write_ms, WriteMs},
+                        {io_in_progress, InProgress}
+                    ]};
+                _ ->
+                    false
+            end;
+        _ ->
+            false
+    end.
+</erl>

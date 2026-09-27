@@ -1,0 +1,1 @@
+../ebin/yaws_rpc.beam: yaws_rpc.erl yaws_debug.hrl ../include/yaws_api.hrl

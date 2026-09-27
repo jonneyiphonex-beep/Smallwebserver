@@ -1,0 +1,3 @@
+../test/revproxy_SUITE_data/intercept3.beam: \
+  revproxy_SUITE_data/intercept3.erl \
+  revproxy_SUITE_data/../../include/yaws_api.hrl

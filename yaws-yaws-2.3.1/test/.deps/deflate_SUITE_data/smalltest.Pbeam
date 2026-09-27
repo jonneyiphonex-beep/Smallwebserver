@@ -1,0 +1,3 @@
+../test/deflate_SUITE_data/smalltest.beam: deflate_SUITE_data/smalltest.erl \
+  deflate_SUITE_data/../../include/yaws.hrl \
+  deflate_SUITE_data/../../include/yaws_api.hrl

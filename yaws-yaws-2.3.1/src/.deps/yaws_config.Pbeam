@@ -1,0 +1,3 @@
+../ebin/yaws_config.beam: yaws_config.erl ../include/yaws.hrl \
+  ../include/yaws_api.hrl yaws_debug.hrl \
+  /usr/lib/erlang/lib/kernel-8.5.4.2/include/file.hrl
